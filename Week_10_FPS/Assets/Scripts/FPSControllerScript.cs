@@ -59,7 +59,7 @@ public class FPSControllerScript : MonoBehaviour
 
             moveDirection = (horizontalInput * transform.right) + (verticalInput * transform.forward);
 
-            if (Input.GetKeyDown("Jump"))
+            if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpForce;
             }
