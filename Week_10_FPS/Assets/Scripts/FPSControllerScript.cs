@@ -44,7 +44,7 @@ public class FPSControllerScript : MonoBehaviour
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime);
 
         //Looking up and down
-        rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
+        rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         rotationX = Mathf.Clamp(rotationX, - lookXLimit, lookXLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         #endregion

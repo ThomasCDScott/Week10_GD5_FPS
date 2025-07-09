@@ -60,6 +60,14 @@ public class RaycastShoot : MonoBehaviour
                 if(targetBox != null)
                 {
                     targetBox.Damage(gunDamage);
+                    Debug.Log("Enemy hit");
+                }
+
+                Enemy ragdollSwitch = hit.transform.GetComponent<Enemy>();
+
+                if (ragdollSwitch != null)
+                {
+                    ragdollSwitch.triggerRagdoll();
                 }
 
                 if(hit.rigidbody != null)
