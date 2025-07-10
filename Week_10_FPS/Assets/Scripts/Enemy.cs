@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,5 +18,8 @@ public class Enemy : MonoBehaviour
             ragdollRB.isKinematic = false;
         }
         GetComponent<Collider>().enabled = false;
+
     }
+
+
 }
