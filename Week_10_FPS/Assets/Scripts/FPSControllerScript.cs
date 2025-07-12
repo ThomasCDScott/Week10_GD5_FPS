@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 
 public class FPSControllerScript : MonoBehaviour
@@ -22,7 +23,14 @@ public class FPSControllerScript : MonoBehaviour
 
     public float Stamina, maxStamina;
     public float runCost;
-    
+    public float chargeRate;
+    private Coroutine recharge;
+    public bool running = false;
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +42,9 @@ public class FPSControllerScript : MonoBehaviour
         //cursor settings
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -79,20 +90,52 @@ public class FPSControllerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveSpeed *= runMultiplier;
-        }
+            running = true;
 
-        if(Input.GetKeyUp(KeyCode.LeftShift))
+            Stamina -= runCost * Time.deltaTime;
+            if (Stamina < 0) Stamina = 0;
+            staminaBar.fillAmount = Stamina / maxStamina;
+
+
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             moveSpeed /= runMultiplier;
         }
 
-        Stamina -= runCost * Time.deltaTime;
-        if (Stamina < 0) Stamina = 0;
-        staminaBar.fillAmount = Stamina / maxStamina;
 
-        
+
+
+        #endregion
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TakeDamage(20);
+        }
     }
-#endregion
+
+
+    private IEnumerator RechargeStamina()
+    {
+        yield return new WaitForSeconds(1f);
+
+        while(Stamina < maxStamina)
+        {
+            Stamina += chargeRate / 10f;
+            if (Stamina > maxStamina) Stamina = maxStamina;
+            staminaBar.fillAmount = Stamina / maxStamina;
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    void TakeDamage(int Damage)
+    {
+        currentHealth -= Damage;
+
+        healthBar.SetHealth(currentHealth);
+    }
 
 }
 
