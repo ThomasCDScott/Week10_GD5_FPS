@@ -31,6 +31,7 @@ public class FPSControllerScript : MonoBehaviour
     public int currentHealth;
 
     public HealthBar healthBar;
+   
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,6 +46,9 @@ public class FPSControllerScript : MonoBehaviour
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        
+
     }
 
     // Update is called once per frame
@@ -110,10 +114,7 @@ public class FPSControllerScript : MonoBehaviour
 
         #endregion
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TakeDamage(20);
-        }
+     
     }
 
 
@@ -127,6 +128,9 @@ public class FPSControllerScript : MonoBehaviour
             if (Stamina > maxStamina) Stamina = maxStamina;
             staminaBar.fillAmount = Stamina / maxStamina;
             yield return new WaitForSeconds(.1f);
+
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
         }
     }
 

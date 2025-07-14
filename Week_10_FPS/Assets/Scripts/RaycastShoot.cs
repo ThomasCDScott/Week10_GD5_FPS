@@ -9,6 +9,10 @@ public class RaycastShoot : MonoBehaviour
     [SerializeField] float fireRange = 50;
     [SerializeField] float hitForce = 15;
     float nextFire;
+    public int maxAmmo = 6;
+    private int currentAmmo;
+    public float reloadTime = 1f;
+    private bool isReloading = false;
 
     
    
@@ -28,6 +32,10 @@ public class RaycastShoot : MonoBehaviour
         FPSCam = Camera.main;
         _as = GetComponent<AudioSource>();
         _lr = GetComponent<LineRenderer>();
+
+     
+            currentAmmo = maxAmmo;
+
     }
 
     // Update is called once per frame
@@ -79,6 +87,17 @@ public class RaycastShoot : MonoBehaviour
             {
                 _lr.SetPosition(1, FPSCam.transform.forward * fireRange);
             }
+
+            currentAmmo--;
+        }
+
+        if (isReloading)
+            return;
+
+        if(currentAmmo <= 0)
+        {
+            StartCoroutine (Reload());
+            return;
         }
     }
 
@@ -90,5 +109,17 @@ public class RaycastShoot : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         _lr.enabled = false;
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        
+            Debug.Log("Reloading");
+
+        yield return new WaitForSeconds(reloadTime);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;
     }
 }

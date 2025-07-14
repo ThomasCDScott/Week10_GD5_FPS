@@ -9,14 +9,16 @@ public class NPCMovementScript : MonoBehaviour
     Vector3 currentDestination;
     [SerializeField] float followDistance;
     WaypointManager _wm;
+    Animator anim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        currentDestination = transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-        _wm = FindAnyObjectByType<WaypointManager>();
+        currentDestination = _wm.waypoints[Random.Range(0, _wm.waypoints.Length)].position;
+        _wm = FindFirstObjectByType<WaypointManager>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class NPCMovementScript : MonoBehaviour
         {
             if(Vector3.Distance(player.position, transform.position) < 2)
             {
-                Idle();
+                Attack();
             }
             else
             {
@@ -44,9 +46,10 @@ public class NPCMovementScript : MonoBehaviour
 
     }
 
-    void Idle()
+    void Attack()
     {
         _agent.SetDestination(transform.position);
+        anim.SetTrigger("Stab");
     }
 
     void Follow()
@@ -54,11 +57,14 @@ public class NPCMovementScript : MonoBehaviour
         _agent.SetDestination(player.position);
     }
 
+    
+
     void Search()
     {
         if(Vector3.Distance(currentDestination,transform.position) < 5)
         {
-            currentDestination = transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+            currentDestination = _wm.waypoints[Random.Range(0, _wm.waypoints.Length)].position;
+            // currentDestination = transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
         }
         _agent.SetDestination(currentDestination);
     }

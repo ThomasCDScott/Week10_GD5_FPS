@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 621909496}
   - component: {fileID: 621909495}
   - component: {fileID: 621909494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,6 +1247,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &631071781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631071777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5566846006673894daec3fced62480a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 631071779}
 --- !u!1001 &670645390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2019,6 +2032,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HarvesterUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 9002380911335285730, guid: 8add5f39e60544f2e855378f8352779b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2026,6 +2043,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9002380911335285730, guid: 8add5f39e60544f2e855378f8352779b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 631071779}
+    - targetCorrespondingSourceObject: {fileID: 9002380911335285730, guid: 8add5f39e60544f2e855378f8352779b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 631071781}
   m_SourcePrefab: {fileID: 100100000, guid: 8add5f39e60544f2e855378f8352779b, type: 3}
 --- !u!1001 &893565007
 PrefabInstance:
@@ -2585,6 +2605,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3008297296413678391, guid: cb422acdc199d6e42910f589b81c283b, type: 3}
   m_PrefabInstance: {fileID: 1014206046}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1055949589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7346488073879044386, guid: 7ddfa3a1d18174043aab251be6df3a0e, type: 3}
+  m_PrefabInstance: {fileID: 1169190024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1055949594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055949589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 6d578be867ae86847b3746ebd6bdf4f4, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &1100508860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2761,10 +2818,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7346488073879044386, guid: 7ddfa3a1d18174043aab251be6df3a0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7346488073879044386, guid: 7ddfa3a1d18174043aab251be6df3a0e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1055949594}
   m_SourcePrefab: {fileID: 100100000, guid: 7ddfa3a1d18174043aab251be6df3a0e, type: 3}
 --- !u!1001 &1281399283
 PrefabInstance:
@@ -2840,6 +2904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TractorUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 1172485759349979603, guid: c5d7c3dd8ee764e7bbbfad11cfebcdff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4756775678787191424, guid: c5d7c3dd8ee764e7bbbfad11cfebcdff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4221017
@@ -2887,6 +2955,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1172485759349979603, guid: c5d7c3dd8ee764e7bbbfad11cfebcdff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1685308959}
+    - targetCorrespondingSourceObject: {fileID: 1172485759349979603, guid: c5d7c3dd8ee764e7bbbfad11cfebcdff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1685308960}
   m_SourcePrefab: {fileID: 100100000, guid: c5d7c3dd8ee764e7bbbfad11cfebcdff, type: 3}
 --- !u!1001 &1292423752
 PrefabInstance:
@@ -3844,6 +3915,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1685308960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685308957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d83a2b71d639914385bd52229f9b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 0}
+  plantingSpots: []
+  plantPrefab: {fileID: 0}
 --- !u!1001 &1689040004
 PrefabInstance:
   m_ObjectHideFlags: 0
