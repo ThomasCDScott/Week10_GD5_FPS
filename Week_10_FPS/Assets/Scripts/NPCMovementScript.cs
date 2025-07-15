@@ -10,14 +10,16 @@ public class NPCMovementScript : MonoBehaviour
     [SerializeField] float followDistance;
     WaypointManager _wm;
     Animator anim;
+    public float attackDistance = 3;
+    public int attackDamage = 20;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        currentDestination = _wm.waypoints[Random.Range(0, _wm.waypoints.Length)].position;
         _wm = FindFirstObjectByType<WaypointManager>();
+        currentDestination = _wm.waypoints[Random.Range(0, _wm.waypoints.Length)].position;
         anim = GetComponent<Animator>();
     }
 
@@ -26,7 +28,7 @@ public class NPCMovementScript : MonoBehaviour
     {
         if (Vector3.Distance(player.position, transform.position) < followDistance)
         {
-            if(Vector3.Distance(player.position, transform.position) < 2)
+            if(Vector3.Distance(player.position, transform.position) < attackDistance)
             {
                 Attack();
             }
@@ -37,7 +39,7 @@ public class NPCMovementScript : MonoBehaviour
             
 
             
-            Follow();
+            
         }
         else
         {
@@ -50,6 +52,7 @@ public class NPCMovementScript : MonoBehaviour
     {
         _agent.SetDestination(transform.position);
         anim.SetTrigger("Stab");
+        
     }
 
     void Follow()
@@ -68,4 +71,6 @@ public class NPCMovementScript : MonoBehaviour
         }
         _agent.SetDestination(currentDestination);
     }
+
+  
 }

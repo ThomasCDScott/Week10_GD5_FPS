@@ -114,8 +114,13 @@ public class FPSControllerScript : MonoBehaviour
 
         #endregion
 
-     
+     if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(20);
+        }
     }
+
+
 
 
     private IEnumerator RechargeStamina()
@@ -139,6 +144,11 @@ public class FPSControllerScript : MonoBehaviour
         currentHealth -= Damage;
 
         healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

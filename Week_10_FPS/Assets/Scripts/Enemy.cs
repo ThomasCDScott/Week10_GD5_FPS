@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
         {
             ragdollRB.isKinematic = true;
         }
+
+
     }
 
   public void triggerRagdoll()
@@ -18,8 +20,11 @@ public class Enemy : MonoBehaviour
             ragdollRB.isKinematic = false;
         }
         GetComponent<Collider>().enabled = false;
+        GetComponent <Animator>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<NPCMovementScript>().enabled = false;
 
     }
 
-
+    
 }
